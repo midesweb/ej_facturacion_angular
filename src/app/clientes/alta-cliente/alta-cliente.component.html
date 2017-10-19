@@ -1,0 +1,22 @@
+<h2>Alta cliente</h2>
+<p>
+  <span>Nombre:</span>
+  <input type="text" [(ngModel)]="cliente.nombre">
+</p>
+<p>
+  <span>CIF:</span>
+  <input type="text" [(ngModel)]="cliente.cif">
+</p>
+<p>
+  <span>Dirección:</span>
+  <input type="text" [(ngModel)]="cliente.direccion">
+</p>
+<p>
+  <span>Grupo:</span>
+  <select [(ngModel)]="cliente.grupo">
+    <option *ngFor="let grupo of grupos" value="{{grupo.id}}">{{grupo.nombre}}</option>
+  </select>
+</p>
+<p>
+  <button (click)="this.nuevoCliente()">Guardar</button>
+</p>
