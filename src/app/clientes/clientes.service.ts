@@ -1,11 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Cliente, Grupo } from './cliente.model';
+import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
+
 
 @Injectable()
 export class ClientesService {
 
   private clientes: Cliente[];
   private grupos: Grupo[];
+  private clientes$: Subject<Cliente[]> = new Subject<Cliente[]>();
 
   constructor() {
     this.grupos = [
@@ -33,12 +37,20 @@ export class ClientesService {
     return this.grupos;
   }
 
-  getClientes() {
-    return this.clientes;
+  // Este método ya no lo usaré
+  // Ya que nadie va a usar el array de clientes directamente
+  // En vez de ello, usaremos el observable.
+  // getClientes() {
+  //   return this.clientes;
+  // }
+
+  getClientes$(): Observable<Cliente[]> {
+    return this.clientes$.asObservable();
   }
 
   agregarCliente(cliente: Cliente) {
     this.clientes.push(cliente);
+    this.clientes$.next(this.clientes);
   }
 
   nuevoCliente(): Cliente {
