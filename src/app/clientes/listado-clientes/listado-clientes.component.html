@@ -3,12 +3,11 @@
 </h2>
 <div *ngIf="! clientes.length">No hay clientes por el momento</div>
 <div>
-  <article *ngFor="let cliente of clientes">
-    <span>{{cliente.nombre}}</span>
-    <span>{{cliente.cif}}</span>
-    <span>{{cliente.direccion}}</span>
-    <span>{{cliente.grupo}}</span>
-  </article>
+  <app-item-cliente 
+    *ngFor="let cliente of clientes" 
+    [cliente]="cliente"
+    (borrarCliente)="doBorrarCliente($event)"
+  ></app-item-cliente>
 </div>
 
 <p>

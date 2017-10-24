@@ -20,4 +20,8 @@ export class ListadoClientesComponent implements OnInit {
     this.clientes$.subscribe(clientes => this.clientes = clientes);
   }
 
+  doBorrarCliente(cliente: Cliente) {
+    console.log('yeah!', cliente);
+    this.clientesService.borrarCliente(cliente);
+  }
 }
